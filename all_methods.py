@@ -2,15 +2,8 @@ import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 
-img = cv2.imread('test.jpg')
-# Converte a imagem para o padrão RGB
-rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
-# Converte a imagem para o padrão GRAY
-gray = cv2.cvtColor(rgb, cv2.COLOR_BGR2GRAY)
 
-limiar = 150 # 0 - 255
-last_img = None
-def limiarizacao( img, limiar):
+def limiarizacao( img, limiar, gray):
     # Métodos de limiarização
     _ , thresh_binary = cv2.threshold(gray, limiar, 255, cv2.THRESH_BINARY)
     _ , thresh_binary_inv = cv2.threshold(gray, limiar, 255, cv2.THRESH_BINARY_INV)
@@ -30,4 +23,3 @@ def limiarizacao( img, limiar):
     
     plt.savefig('output.jpg')
 
-limiarizacao(img, limiar)
